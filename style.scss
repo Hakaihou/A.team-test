@@ -1,0 +1,383 @@
+$background-header: #fc0807;
+
+html {
+  font-family: "Roboto Slab", serif;
+  font-weight: 300;
+}
+
+body {
+  width: 1366px;
+  margin: 0 auto;
+}
+
+@mixin icon-flex {
+  display: flex;
+
+  & a {
+    display: flex;
+    align-items: center;
+  }
+
+  & img {
+    width: 20px;
+    height: 20px;
+    padding: 5px 10px 8px 10px;
+  }
+
+  & a:first-child {
+    & img {
+      width: 22px;
+    }
+  }
+
+  & a:nth-child(3) {
+    & img {
+      width: 28px;
+    }
+  }
+}
+
+@mixin button {
+  background: $background-header;
+  border: none;
+  border-radius: 10px;
+  padding: 20px 50px;
+  color: white;
+  cursor: pointer;
+  transition: 0.5s all;
+  font-size: 20px;
+  font-weight: bold;
+
+  &:hover {
+    background: #ff4d4d;
+    transition: 0.5s all;
+  }
+
+  &:active {
+    background: #ff6c6c;
+    scale: 0.95;
+    transition: 0.3s all;
+  }
+}
+
+.modal-window {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  z-index: 10;
+
+  .modal-form {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    z-index: 20;
+    display: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    flex-direction: column;
+
+    .modal-item {
+      margin-bottom: 10px;
+
+      & input {
+        border: 1px solid black;
+        border-radius: 4px;
+        padding: 5px;
+        width: -webkit-fill-available;
+        margin-top: 5px;
+      }
+
+    }
+
+    & svg {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      cursor: pointer;
+
+      & path {
+        transition: 0.3s all;
+      }
+
+      &:hover {
+
+        & path {
+          stroke: $background-header;
+          transition: 0.3s all;
+        }
+      }
+    }
+
+    & button {
+      @include button;
+      padding: 10px 20px;
+      font-size: 16px;
+      width: fit-content;
+      margin-top: 10px;
+      align-self: center;
+    }
+  }
+}
+
+.header {
+  max-height: 182px;
+  background: white;
+  width: inherit;
+
+  .header-menu {
+    height: 37px;
+    background: $background-header;
+    padding-left: 30px;
+    display: flex;
+    justify-content: space-between;
+
+    .icon-flex {
+      @include icon-flex;
+    }
+
+    .side-menu {
+      display: flex;
+
+      .search-input {
+        display: flex;
+        align-items: center;
+
+        & input {
+          height: -webkit-fill-available;
+          border: none;
+          background: $background-header;
+          color: #fff;
+          width: 70px;
+          transition: 0.5s all;
+          font-family: "Roboto Slab", serif;
+          font-weight: 300;
+          font-size: 17px;
+
+          &:focus {
+            width: 120px;
+            transition: 0.5s all;
+            outline: none;
+          }
+
+          &::placeholder {
+            color: white;
+            opacity: 0.7;
+            font-family: "Roboto Slab", serif;
+            font-size: 16px;
+          }
+        }
+
+        & img {
+          padding: 10px;
+          cursor: pointer;
+          width: 18px;
+        }
+      }
+
+      & a {
+        text-decoration: none;
+        color: white;
+        padding: 8px 30px;
+        font-size: 17px;
+      }
+
+      .active {
+        background: black;
+      }
+    }
+  }
+
+  .header-container {
+    position: relative;
+
+    .header-logo {
+      padding: 15px 0 0 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      & hr {
+        width: 75%;
+        border: 0.5px solid $background-header;
+        margin: 15px 0 5px;
+      }
+    }
+
+    .header-dropdown {
+      position: relative;
+
+      .dropdown-container {
+        width: 865px;
+        display: flex;
+        justify-content: space-between;
+        margin: 0 auto;
+
+        .dropdown-item {
+          min-height: 49px;
+          display: flex;
+
+          & a {
+            text-decoration: none;
+            color: black;
+            font-size: 14px;
+            padding: 15px 5px;
+
+            &:hover {
+              background: $background-header;
+              color: white;
+            }
+          }
+
+          &:hover {
+            .flex-container {
+              display: flex;
+            }
+          }
+
+          .flex-container {
+            background: white;
+            display: none;
+            padding: 35px 25px 10px 25px;
+            position: absolute;
+            left: 0;
+            top: 48px;
+            gap: 30px;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+
+            .flex-item {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              padding: 0;
+
+              &:hover {
+                background: initial;
+                color: black;
+                cursor: pointer;
+              }
+
+              & img {
+                max-width: 260px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.fixed {
+  position: fixed;
+  min-height: 95px;
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+
+    .header-logo {
+      padding: 0;
+      flex-direction: row;
+
+      & img {
+        max-width: 214px;
+        max-height: 36px;
+      }
+
+      & hr {
+        position: absolute;
+        width: 73%;
+        right: 0;
+        bottom: -5px;
+        margin: 0 0 2px;
+      }
+    }
+
+    .header-dropdown {
+      padding-right: 115px;
+      position: initial;
+
+      .dropdown-container {
+        .dropdown-item {
+          min-height: initial;
+
+          & a {
+            padding: 15px 5px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.main-page {
+  max-width: 1000px;
+  margin: 0 auto;
+
+  & h1 {
+    text-align: center;
+    font-size: 40px;
+    font-weight: 400;
+  }
+
+  & img {
+    max-width: 1000px;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 60px;
+
+    & button {
+      @include button;
+    }
+  }
+}
+
+.footer {
+  .socials-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    .icon-flex {
+      @include icon-flex;
+    }
+  }
+
+  .text-container {
+    text-align: center;
+    color: #565353;
+
+    & a {
+      display: inline-block;
+      width: 100%;
+      color: $background-header;
+      font-size: 1.3em;
+      font-weight: bold;
+    }
+
+    & p {
+      margin: 0.5rem 0 1rem 0;
+      font-size: 12px;
+    }
+
+    .bottom-link {
+      color: black;
+      font-size: 1.1em;
+      text-decoration: none;
+
+      &:hover {
+        color: #bc1c1c;
+        text-decoration: underline;
+      }
+    }
+  }
+}
