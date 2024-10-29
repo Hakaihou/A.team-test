@@ -226,6 +226,7 @@ body {
   justify-content: space-between;
 }
 .fixed .header-container .header-logo {
+  margin-top: 10px;
   padding: 0;
   flex-direction: row;
 }
@@ -237,7 +238,7 @@ body {
   position: absolute;
   width: 73%;
   right: 0;
-  bottom: -10px;
+  bottom: -8px;
   margin: 0 0 2px;
 }
 .fixed .header-container .header-dropdown {
